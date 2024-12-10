@@ -1,0 +1,50 @@
+.board {
+    display: grid;
+    grid-gap: 10px;
+    max-width: 600px;
+    margin: 100px auto;
+}
+
+.board-4x4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.board-6x6 {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.board-8x8 {
+    grid-template-columns: repeat(8, 1fr);
+}
+
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* Asegurarse de que esté al frente */
+}
+
+.notification h2 {
+    margin: 0 0 15px;
+}
+
+.notification button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.notification button:hover {
+    background-color: #0056b3;
+}
