@@ -17,6 +17,13 @@
     grid-template-columns: repeat(8, 1fr);
 }
 
+.board-screen {
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
+
 .notification {
     position: fixed;
     top: 50%;
@@ -28,7 +35,7 @@
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    z-index: 1000; /* Asegurarse de que esté al frente */
+    z-index: 1000; 
 }
 
 .notification h2 {
@@ -47,4 +54,58 @@
 
 .notification button:hover {
     background-color: #0056b3;
+}
+
+.score-bar {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 0;
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #ddd;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.play-again-button, .exit-button {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.play-again-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+
+.play-again-button:hover {
+    background-color: #218838;
+    transform: translateY(-3px);
+}
+
+.play-again-button:active {
+    background-color: #1e7e34;
+    transform: translateY(1px);
+}
+
+.exit-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+
+.exit-button:hover {
+    background-color: #c82333;
+    transform: translateY(-3px);
+}
+
+.exit-button:active {
+    background-color: #bd2130;
+    transform: translateY(1px);
 }

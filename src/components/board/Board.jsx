@@ -11,6 +11,7 @@ const Board = () => {
     const [selectedMemoBlock, setSelectedMemoBlock] = useState(null);
     const [animating, setAnimating] = useState(false);
     const [gameWon, setGameWon] = useState(false);
+    const [score, setScore] = useState(0);
     const emojiList = [
         "💣", "🧤", "🎩", "🌮", "🎱", "🌶", "🍕", "🦖",
         "🍩", "🦄", "🎃", "🚀", "🐠", "🌈", "🥑", "🛸",
@@ -38,6 +39,7 @@ const Board = () => {
         setSelectedMemoBlock(null);
         setAnimating(false);
         setGameWon(false);
+        setScore(0);
     };
 
     const shuffleArray = (array) => {
@@ -60,6 +62,7 @@ const Board = () => {
             setSelectedMemoBlock(flippedMemoBlock);
         } else if (selectedMemoBlock.emoji === memoBlock.emoji) {
             setSelectedMemoBlock(null);
+            setScore((prevScore) => prevScore + 10);
             checkWinCondition(shuffledMemoBlocksCopy);
         } else {
             setAnimating(true);
@@ -85,12 +88,14 @@ const Board = () => {
     }
 
     return (
-        <div>
+        <div className="board-screen">
+            <div className="score-bar">Puntaje: {score}</div>
             {gameWon && (
                 <div className="notification">
                     <h2>¡Felicidades, ganaste!</h2>
-                    <button onClick={resetGame}>Jugar de nuevo</button>
-                    <button onClick={backMenu}>Salir</button>
+                    <button className="play-again-button" onClick={resetGame}>Jugar de nuevo</button>
+                    <br />
+                    <button className="exit-button" onClick={backMenu}>Salir</button>
                 </div>
             )}
             <div
@@ -105,6 +110,7 @@ const Board = () => {
                     />
                 ))}
             </div>
+            <button className="exit-button" onClick={backMenu}> Abandonar Partida </button>
         </div>
     );
 };
