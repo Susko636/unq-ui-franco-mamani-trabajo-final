@@ -25,7 +25,6 @@ const Home = () => {
                 <div className='game-options'>
                     <p> Selecciona la dificultad </p>
                     <select className="difficulty-select" value={boardSize} onChange={(e) => setBoardSize(parseInt(e.target.value))}>
-                        <option value={2}>2x2</option>
                         <option value={4}>fácil</option>
                         <option value={6}>medio</option>
                         <option value={8}>difícil</option>

@@ -97,19 +97,17 @@ const Board = () => {
     }
 
     return (
-        <div className="board-screen">
-            <div className="score-bar">Puntaje: {score}</div>
+        <div className="game-wrapper">
+            <header className="game-header"> Puntaje: {score}</header>
             {gameWon && (
-                <div className="notification">
-                    <h2>¡Felicidades, ganaste!</h2>
-                    <button className="play-again-button" onClick={resetGame}>Jugar de nuevo</button>
+                <div className="notification-popup">
+                    <p> Ganaste </p>
+                    <button className="button-play-again" onClick={resetGame}>Jugar de nuevo</button>
                     <br />
-                    <button className="exit-button" onClick={backMenu}>Salir</button>
+                    <button className="button-exit" onClick={backMenu}>Salir</button>
                 </div>
             )}
-            <div
-                className={`board board-${boardSize}x${boardSize}`}
-            >
+            <div className={`game-board game-board-${boardSize}x${boardSize}`}>
                 {shuffledMemoCards.map((memoCard) => (
                     <MemoCard
                         key={memoCard.index}
@@ -119,9 +117,10 @@ const Board = () => {
                     />
                 ))}
             </div>
-            <button className="exit-button" onClick={backMenu}> Abandonar Partida </button>
+            <button className="button-exit" onClick={backMenu}> Abandonar Partida </button>
         </div>
     );
+    
 };
 
 export default Board;

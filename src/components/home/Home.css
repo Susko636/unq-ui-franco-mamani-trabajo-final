@@ -11,11 +11,12 @@ body {
 }
 
 .home-header {
-    background-color: #007bff;
-    color: #fff;
+    background: linear-gradient(135deg, #f4954c, #eb7318);
+    color: #000;
     padding: 15px 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #000000;
 }
 
 .home-header h1 {
@@ -28,10 +29,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(135deg, #5da888, #eb7318);
 }
 
 .game-options {
+    display: block;
+    padding: 25px;
     text-align: center;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #5da888, #eb7318);
 }
 
 .difficulty-select {
@@ -40,39 +47,40 @@ body {
     padding: 10px;
     font-size: 1rem;
     border-radius: 4px;
-    border: 1px solid #ddd;
+    border: 1px solid #000;
+    background-color: #eb7318;
 }
 
 .play-button {
-    background-color: #28a745;
+    background-color: #5da888;
     color: #fff;
     padding: 10px 20px;
     font-size: 1.2rem;
-    border: none;
+    border: 1px solid #000;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .play-button:hover {
-    background-color: #218838;
+    background-color: #5da888;
 }
 
 .info-button {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #007bff;
+    background-color: #5da888;
     color: #fff;
     padding: 10px 15px;
     font-size: 1rem;
-    border: none;
-    border-radius: 50%;
+    border: 1px solid #000;
+    border-radius: 4px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
 .info-button:hover {
-    background-color: #0056b3;
+    background-color: #5da888;
 }
 
 .rules {
