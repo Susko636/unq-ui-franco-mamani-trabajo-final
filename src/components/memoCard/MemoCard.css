@@ -38,3 +38,9 @@
 .memo-block-front {
     background-color: #84DCCF;
 }
+
+.memo-block-back img {
+    object-fit: cover; 
+    width: 75%;       
+    height: 30%;  
+}
