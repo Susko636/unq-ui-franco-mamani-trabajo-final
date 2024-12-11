@@ -1,15 +1,18 @@
 import './MemoCard.css';
 
-const MemoCard = ({animating, handleMemoClick, memoBlock}) => (
-    <div className="memo-block" onClick={() => (!memoBlock.flipped && !animating) && handleMemoClick(memoBlock)}>
-        <div className={`memo-block-inner ${memoBlock.flipped && 'memo-block-flipped'}`}>
+const MemoCard = ({animating, handleMemoClick, memoCard}) => {
+
+    return (
+    <div className="memo-block" onClick={() => (!memoCard.flipped && !animating) && handleMemoClick(memoCard)}>
+        <div className={`memo-block-inner ${memoCard.flipped && 'memo-block-flipped'}`}>
             <div className="memo-block-front">
             </div>
             <div className="memo-block-back">
-                {memoBlock.emoji}
+                {memoCard.emoji}
             </div>
         </div>
     </div>
-)
+    );
+};
 
 export default MemoCard;

@@ -7,8 +7,8 @@ const Board = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const boardSize = parseInt(searchParams.get("size")) || 4;
-    const [shuffledMemoBlocks, setShuffledMemoBlocks] = useState([]);
-    const [selectedMemoBlock, setSelectedMemoBlock] = useState(null);
+    const [shuffledMemoCards, setShuffledMemoCards] = useState([]);
+    const [selectedMemoCard, setSelectedMemoCard] = useState(null);
     const [animating, setAnimating] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const [score, setScore] = useState(0);
@@ -24,60 +24,75 @@ const Board = () => {
     }, [boardSize]);
 
     const resetGame = () => {
-        const totalBlocks = boardSize * boardSize;
-        const numPairs = totalBlocks / 2;
-        const selectedEmojis = emojiList.slice(0, numPairs);
-        const shuffledEmojiList = shuffleArray([...selectedEmojis, ...selectedEmojis]);
-
-        setShuffledMemoBlocks(
-            shuffledEmojiList.map((emoji, index) => ({
-                index,
-                emoji,
-                flipped: false,
-            }))
-        );
-        setSelectedMemoBlock(null);
+        const shuffledImagesList = shuffledList(boardSize, emojiList);
+        const memoCards = shuffledImagesList.map((emoji, index) => ({
+            index,
+            emoji,
+            flipped: false,
+        }));
+    
+        setShuffledMemoCards(memoCards);
+        setSelectedMemoCard(null);
         setAnimating(false);
         setGameWon(false);
         setScore(0);
     };
-
+    
+    const shuffledList = (boardSize, emojiList) => {
+        const numPairs = (boardSize * boardSize) / 2;
+        const selectedEmojis = emojiList.slice(0, numPairs);
+        return shuffleArray([...selectedEmojis, ...selectedEmojis]);
+    };
+    
     const shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
+        return array
+            .map((item) => ({ item, sort: Math.random() }))
+            .sort((a, b) => a.sort - b.sort)
+            .map(({ item }) => item);
     };
-
-    const handleMemoClick = (memoBlock) => {
-        if (animating || gameWon || memoBlock.flipped) return;
-
-        const flippedMemoBlock = { ...memoBlock, flipped: true };
-        const shuffledMemoBlocksCopy = [...shuffledMemoBlocks];
-        shuffledMemoBlocksCopy[memoBlock.index] = flippedMemoBlock;
-        setShuffledMemoBlocks(shuffledMemoBlocksCopy);
-
-        if (selectedMemoBlock === null) {
-            setSelectedMemoBlock(flippedMemoBlock);
-        } else if (selectedMemoBlock.emoji === memoBlock.emoji) {
-            setSelectedMemoBlock(null);
-            setScore((prevScore) => prevScore + 10);
-            checkWinCondition(shuffledMemoBlocksCopy);
+    
+    const handleMemoClick = (memoCard) => {
+        if (animating || gameWon || memoCard.flipped) return;
+    
+        const flippedMemoCard = { ...memoCard, flipped: true };
+        const updatedCards = [...shuffledMemoCards];
+        updatedCards[memoCard.index] = flippedMemoCard;
+        setShuffledMemoCards(updatedCards);
+    
+        if (!selectedMemoCard) {
+            setSelectedMemoCard(flippedMemoCard);
         } else {
-            setAnimating(true);
-            setTimeout(() => {
-                shuffledMemoBlocksCopy[memoBlock.index] = { ...memoBlock, flipped: false };
-                shuffledMemoBlocksCopy[selectedMemoBlock.index] = { ...selectedMemoBlock, flipped: false };
-                setShuffledMemoBlocks(shuffledMemoBlocksCopy);
-                setSelectedMemoBlock(null);
-                setAnimating(false);
-            }, 1000);
+            processMemoMatch(flippedMemoCard, updatedCards);
         }
     };
+    
+    const processMemoMatch = (currentCard, updatedCards) => {
+        if (currentCard.emoji === selectedMemoCard.emoji) {
+            handleCorrectMatch(updatedCards);
+        } else {
+            handleIncorrectMatch(currentCard, updatedCards);
+        }
+    };
+    
+    const handleCorrectMatch = (updatedCards) => {
+        setSelectedMemoCard(null);
+        setScore((prevScore) => prevScore + 10);
+        checkWinCondition(updatedCards);
+    };
+    
+    const handleIncorrectMatch = (currentCard, updatedCards) => {
+        setAnimating(true);
+        setTimeout(() => {
+            updatedCards[currentCard.index] = { ...currentCard, flipped: false };
+            updatedCards[selectedMemoCard.index] = { ...selectedMemoCard, flipped: false };
+            setShuffledMemoCards(updatedCards);
+            setSelectedMemoCard(null);
+            setAnimating(false);
+        }, 1000);
+    };        
 
-    const checkWinCondition = (memoBlocks) => {
-        const allFlipped = memoBlocks.every((block) => block.flipped);
+    const checkWinCondition = (memoCards) => {
+        const allFlipped = memoCards.every((card) => card.flipped);
         if (allFlipped) {
             setGameWon(true);
         }
@@ -101,10 +116,10 @@ const Board = () => {
             <div
                 className={`board board-${boardSize}x${boardSize}`}
             >
-                {shuffledMemoBlocks.map((memoBlock) => (
+                {shuffledMemoCards.map((memoCard) => (
                     <MemoCard
-                        key={memoBlock.index}
-                        memoBlock={memoBlock}
+                        key={memoCard.index}
+                        memoCard={memoCard}
                         animating={animating}
                         handleMemoClick={handleMemoClick}
                     />

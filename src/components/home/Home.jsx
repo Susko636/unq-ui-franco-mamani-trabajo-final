@@ -23,7 +23,7 @@ const Home = () => {
             </header>
             <div className='home-content'>
                 <div className='game-options'>
-                    <p>Selecciona la dificultad </p>
+                    <p> Selecciona la dificultad </p>
                     <select className="difficulty-select" value={boardSize} onChange={(e) => setBoardSize(parseInt(e.target.value))}>
                         <option value={2}>2x2</option>
                         <option value={4}>fácil</option>
