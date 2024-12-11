@@ -2,6 +2,7 @@ import MemoCard from '../memoCard/MemoCard';
 import './Board.css';
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import cardIcons from "./CardIcons"
 
 const Board = () => {
     const [searchParams] = useSearchParams();
@@ -12,22 +13,15 @@ const Board = () => {
     const [animating, setAnimating] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const [score, setScore] = useState(0);
-    const emojiList = [
-        "💣", "🧤", "🎩", "🌮", "🎱", "🌶", "🍕", "🦖",
-        "🍩", "🦄", "🎃", "🚀", "🐠", "🌈", "🥑", "🛸",
-        "🐼", "🍓", "🍔", "🎮", "📚", "🖌", "🎯", "🐧",
-        "🐢", "🍇", "🎹", "🐸", "🍒", "🧸", "🎈", "🏀"
-    ];
 
     useEffect(() => {
         resetGame();
     }, [boardSize]);
-
     const resetGame = () => {
-        const shuffledImagesList = shuffledList(boardSize, emojiList);
-        const memoCards = shuffledImagesList.map((emoji, index) => ({
+        const shuffledImageList = createShuffledImageList(boardSize, Object.values(cardIcons));
+        const memoCards = shuffledImageList.map((image, index) => ({
             index,
-            emoji,
+            image,
             flipped: false,
         }));
     
@@ -38,10 +32,10 @@ const Board = () => {
         setScore(0);
     };
     
-    const shuffledList = (boardSize, emojiList) => {
+    const createShuffledImageList = (boardSize, imageList) => {
         const numPairs = (boardSize * boardSize) / 2;
-        const selectedEmojis = emojiList.slice(0, numPairs);
-        return shuffleArray([...selectedEmojis, ...selectedEmojis]);
+        const selectedImages = imageList.slice(0, numPairs);
+        return shuffleArray([...selectedImages, ...selectedImages]);
     };
     
     const shuffleArray = (array) => {
@@ -67,7 +61,7 @@ const Board = () => {
     };
     
     const processMemoMatch = (currentCard, updatedCards) => {
-        if (currentCard.emoji === selectedMemoCard.emoji) {
+        if (currentCard.image === selectedMemoCard.image) {
             handleCorrectMatch(updatedCards);
         } else {
             handleIncorrectMatch(currentCard, updatedCards);
