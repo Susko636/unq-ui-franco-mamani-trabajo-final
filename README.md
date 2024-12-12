@@ -1,8 +1,22 @@
-# React + Vite
+# Memotest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Requisitos 
 
-Currently, two official plugins are available:
+* **Node.js:** Tener instalado una version de [Node.js] (https://nodejs.org/en) superio a v16
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Tener algún editor de texto, como por ejemplo: [Visual Studio Code] (https://code.visualstudio.com/)
+
+## Instalación
+
+1. Clona el repositorio
+   `git clone https://github.com/Susko636/unq-ui-franco-mamani-trabajo-final.git`
+
+2. Navega hacia el directorio donde hayas clonado el repositorio
+
+3. Instala las dependencias necesarias para que el proyecto funcione correctamente
+  `npm install`
+
+4. Una vez instaladas las dependencias, podes correr el proyecto
+  `npm run dev`
+
+5. Ahora solo resta entrar en la url que te tire consola y jugar.
