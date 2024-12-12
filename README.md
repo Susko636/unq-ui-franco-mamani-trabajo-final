@@ -2,7 +2,7 @@
 
 ## Requisitos 
 
-* **Node.js:** Tener instalado una version de [Node.js](https://nodejs.org/en) superio a v16
+* **Node.js:** Tener instalado una version de [Node.js](https://nodejs.org/en) superior a la v16
 
 * Tener algún editor de texto, como por ejemplo: [Visual Studio Code](https://code.visualstudio.com/)
 
