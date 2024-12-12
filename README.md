@@ -9,14 +9,14 @@
 ## Instalación
 
 1. Clona el repositorio
-   `git clone https://github.com/Susko636/unq-ui-franco-mamani-trabajo-final.git`
+   ```git clone https://github.com/Susko636/unq-ui-franco-mamani-trabajo-final.git```
 
 2. Navega hacia el directorio donde hayas clonado el repositorio
 
 3. Instala las dependencias necesarias para que el proyecto funcione correctamente
-  `npm install`
+  ```npm install```
 
 4. Una vez instaladas las dependencias, podes correr el proyecto
-  `npm run dev`
+  ```npm run dev```
 
 5. Ahora solo resta entrar en la url que te tire consola y jugar.
